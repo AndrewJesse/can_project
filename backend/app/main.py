@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
+from sqlalchemy.sql import text
 from .database import SessionLocal, engine, Base
 from . import models, can_handler
 
@@ -27,3 +28,11 @@ def create_message(db: Session = Depends(get_db)):
     db.commit()
     db.refresh(message)
     return message
+
+@app.get("/db-check")
+def read_root(db: Session = Depends(get_db)):
+    try:
+        result = db.execute(text("SELECT 1")).fetchone()
+        return {"status": "Database is connected", "result": result[0]}
+    except Exception as e:
+        return {"status": "Database is not connected", "error": str(e)}
