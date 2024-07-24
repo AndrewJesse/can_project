@@ -1,11 +1,8 @@
 from .models import CANMessage
-from datetime import datetime
 
-def read_can_message():
-    # Simulate reading a CAN message
-    message = CANMessage(
-        timestamp=datetime.now(),
-        message_id="123",
-        data="Some CAN data"
+def read_can_message() -> CANMessage:
+    return CANMessage(
+        arbitration_id="123ABC",
+        data="Some data",
+        timestamp="2024-07-23 12:34:56"
     )
-    return message
