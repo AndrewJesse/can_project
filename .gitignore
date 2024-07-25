@@ -89,6 +89,7 @@ env/
 ENV/
 env.bak/
 venv.bak/
+venv/
 
 # Spyder project settings
 .spyderproject
@@ -107,3 +108,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+notes.txt
